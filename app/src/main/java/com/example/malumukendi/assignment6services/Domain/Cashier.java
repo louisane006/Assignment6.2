@@ -1,0 +1,150 @@
+package com.example.malumukendi.assignment6services.Domain;
+
+import android.content.Intent;
+import android.os.IBinder;
+
+import java.io.Serializable;
+
+/**
+ * Created by louisane Malu on 3/29/2016.
+ */
+//@Entity
+public abstract class Cashier implements Serializable{
+
+        private static final long serialVersionUID = 1L;
+        //@Id
+        //@GeneratedValue(strategy = GenerationType.AUTO)
+        private Long identification;
+        private String name;
+        private String surname;
+        private String taskNumber;
+        private Customer customer;
+
+        public Cashier(Builder b){
+            this.name = b.name;
+            this.surname = b.surname;
+            this.taskNumber = b.taskNumber;
+            this.identification = b.identification;
+            this.customer = b.customer;
+        }
+
+    protected Cashier() {
+    }
+
+    public abstract IBinder onBind(Intent intent);
+
+    public static class Builder{
+            private String name;
+            private String surname;
+            private String taskNumber;
+            private Long identification;
+            private Customer customer;
+
+            public Builder(String num) {
+                taskNumber = num;
+            }
+
+            public Builder() {
+
+            }
+
+            public Builder name(String name){
+                this.name = name;
+                return this;
+            }
+            public Builder surname(String surname){
+                this.surname = surname;
+                return this;
+            }
+            public Builder identification(Long i){
+                identification = i;
+                return this;
+            }
+            public Builder cashier(Cashier cashier){
+                name = cashier.getName();
+                surname = cashier.getSurname();
+                taskNumber = cashier.getTaskNumber();
+                identification = cashier.getIdentification();
+                return this;
+            }
+            public Cashier build(){
+                return new Cashier(this) {
+                    @Override
+                    public IBinder onBind(Intent intent) {
+                        return null;
+                    }
+                };
+            }
+
+            public Builder taskNum(String t) {
+                return this;
+            }
+
+            public Builder copy(Cashier value) {
+                this.identification = value.identification;
+                this.name=value.name;
+                this.surname=value.surname;
+                this.taskNumber= value.taskNumber;
+                return  this;
+            }
+
+            public Builder customer(Customer cust) {
+                customer = cust;
+                return this;
+
+            }
+        }
+        public Long getIdentification() {
+            return identification;
+        }
+        public void setIdentification(Long identification) {
+            this.identification = identification;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getSurname() {
+            return surname;
+        }
+        public void setSurname(String surname) {
+        this.surname = surname;
+          }
+        public String getTaskNumber() {
+            return taskNumber;
+        }
+        public void setTaskNumber(String taskNumber) {
+            this.taskNumber = taskNumber;
+        }
+        public Customer getCustomer() {
+        return customer;
+    }
+        public void setCustomer(SmartScreen screen) {
+        this.customer = customer;
+    }
+
+    @Override
+        public int hashCode() {
+            int hash = 0;
+            hash += (identification != null ? identification.hashCode() : 0);
+            return hash;
+        }
+        @Override
+        public boolean equals(Object object) {
+            if (!(object instanceof Cashier)) {
+                return false;
+            }
+            Cashier other = (Cashier) object;
+            if ((this.identification == null && other.identification != null) || (this.identification != null && !this.identification.equals(other.identification))) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public String toString() {
+            return "Cashier[ id=" + identification + " ]";
+        }
+}

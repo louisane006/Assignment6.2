@@ -1,0 +1,167 @@
+package com.example.malumukendi.assignment6services.Domain;
+
+import android.content.Intent;
+import android.os.IBinder;
+
+import java.io.Serializable;
+
+/**
+ * Created by louisane Malu on 4/1/2016.
+ */
+//@Entity
+public abstract class Manager implements Serializable {
+    private static final long serialVersionUID = 1L;
+   // @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long identification;
+    private String name;
+    private String surname;
+    private String taskNumber;
+    private Laptop laptop;
+    private SmartScreen screen;
+
+    public Manager(Builder b){
+        this.name = b.name;
+        surname = b.surname;
+        this.taskNumber  = b.taskNumber;
+        this.identification = b.identification;
+    }
+
+    protected Manager() {
+    }
+
+    public abstract IBinder onBind(Intent intent);
+
+    public static class Builder{
+        private String name;
+        private String surname;
+        private String taskNumber;
+        private Long identification;
+        private Customer customer;
+
+        public Builder(String taskNumber) {
+            this.taskNumber = taskNumber;
+        }
+
+        public Builder() {
+
+        }
+
+        public Builder name(String name){
+            this.name = name;
+            return this;
+        }
+        public Builder surname(String surname){
+            this.surname = surname;
+            return this;
+        }
+        public Builder id(Long i){
+            identification = i;
+            return this;
+        }
+        public Builder manager(Manager m){
+            identification = m.getId();
+            name = m.getName();
+            surname = m.getSurname();
+            taskNumber = m.getTaskNumber();
+            return this;
+        }
+        public Manager build(){
+            return new Manager(this) {
+                @Override
+                public IBinder onBind(Intent intent) {
+                    return null;
+                }
+            };
+        }
+
+        public Builder taskNum(String string) {
+            return this;
+        }
+
+        public Builder copy(Manager value) {
+            this.identification = value.identification;
+            this.name=value.name;
+            this.surname=value.surname;
+            this.taskNumber= value.taskNumber;
+            return  this;
+        }
+
+        public Builder customer(Customer cust) {
+            customer = cust;
+            return this;
+        }
+    }
+    public Long getId() {
+        return identification;
+    }
+    public void setId(Long identification) {
+        this.identification = identification;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getTaskNumber() {
+        return taskNumber;
+    }
+
+    public void setTaskNumber(String taskNumber){
+        this.taskNumber = taskNumber;
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setPc(Laptop laptop) {
+        this.laptop = laptop;
+    }
+
+    public SmartScreen getScreen() {
+        return screen;
+    }
+
+    public void setBoard(SmartScreen screen) {
+        this.screen = screen;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (identification != null ? identification.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Manager)) {
+            return false;
+        }
+        Manager other = (Manager) object;
+        if ((this.identification == null && other.identification != null) || (this.identification != null && !this.identification.equals(other.identification))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager[ identification =" + identification + " ]";
+    }
+
+}
