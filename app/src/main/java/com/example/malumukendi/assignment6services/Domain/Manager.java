@@ -1,15 +1,11 @@
 package com.example.malumukendi.assignment6services.Domain;
 
-import android.content.Intent;
-import android.os.IBinder;
-
 import java.io.Serializable;
 
 /**
  * Created by louisane Malu on 4/1/2016.
  */
-//@Entity
-public abstract class Manager implements Serializable {
+public class Manager implements Serializable {
     private static final long serialVersionUID = 1L;
    // @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +26,6 @@ public abstract class Manager implements Serializable {
     protected Manager() {
     }
 
-    public abstract IBinder onBind(Intent intent);
 
     public static class Builder{
         private String name;
@@ -67,12 +62,7 @@ public abstract class Manager implements Serializable {
             return this;
         }
         public Manager build(){
-            return new Manager(this) {
-                @Override
-                public IBinder onBind(Intent intent) {
-                    return null;
-                }
-            };
+            return new Manager(this);
         }
 
         public Builder taskNum(String string) {

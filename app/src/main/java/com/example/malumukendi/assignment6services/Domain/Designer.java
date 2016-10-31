@@ -1,14 +1,11 @@
 package com.example.malumukendi.assignment6services.Domain;
 
-import android.content.Intent;
-import android.os.IBinder;
-
 import java.io.Serializable;
 
 /**
  * Created by louisane Malu on 3/28/2016.
  */
-public abstract class Designer implements Serializable{
+public class Designer implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -32,9 +29,6 @@ public abstract class Designer implements Serializable{
     public Designer() {
 
     }
-
-    public abstract IBinder onBind(Intent intent);
-
     public static class Builder{
         private Long identification;
         private String name;
@@ -73,10 +67,7 @@ public abstract class Designer implements Serializable{
         }
         public Designer design(){
             return new Designer(this) {
-                @Override
-                public IBinder onBind(Intent intent) {
-                    return null;
-                }
+
             };
         }
         public Builder Designer(Designer designer){
@@ -89,12 +80,7 @@ public abstract class Designer implements Serializable{
             return this;
         }
         public Designer build(){
-            return new Designer(this) {
-                @Override
-                public IBinder onBind(Intent intent) {
-                    return null;
-                }
-            };
+            return new Designer(this);
         }
 
         public Builder taskNumber(String t) {

@@ -1,17 +1,13 @@
 package com.example.malumukendi.assignment6services.Domain;
 
-import android.content.Intent;
-import android.os.IBinder;
-
 import java.io.Serializable;
 
 /**
  * Created by louisane Malu on 3/28/2016.
  */
-public abstract class Customer implements Serializable, Payment {
+public class Customer implements Serializable, Payment {
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long identification;
     private String custNum;
     private String name;
@@ -37,8 +33,6 @@ public abstract class Customer implements Serializable, Payment {
     public double costForEverything() {
         return 0;
     }
-
-    public abstract IBinder onBind(Intent intent);
 
     public static class Builder{
         private Long identification;
@@ -80,12 +74,7 @@ public abstract class Customer implements Serializable, Payment {
             return  this;
         }
         public Customer build(){
-            return new Customer(this) {
-                @Override
-                public IBinder onBind(Intent intent) {
-                    return null;
-                }
-            };
+            return new Customer(this);
         }
     }
     public void setIdentification(Long identification) {

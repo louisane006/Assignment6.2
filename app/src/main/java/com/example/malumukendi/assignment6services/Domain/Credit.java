@@ -5,12 +5,9 @@ import java.io.Serializable;
 /**
  * Created by louisane Malu on 4/2/2016.
  */
-//@Entity
 public class Credit implements Serializable, Payment {
 
     private static final long serialVersionUID = 1L;
-    //@Id
-   // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long identification;
     private double amount;
     private String name;

@@ -5,7 +5,6 @@ import com.example.malumukendi.assignment6services.Domain.Manager;
 /**
  * Created by Malu.Mukendi on 2016-05-07.
  */
-public interface TotalManagerGadgetService {
+public interface ManagerService extends Services<Manager,Long>{
 
-    double totalCost(Manager manager);
 }

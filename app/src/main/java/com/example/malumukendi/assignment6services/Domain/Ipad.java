@@ -8,8 +8,6 @@ import java.io.Serializable;
 //@Entity
 public class Ipad implements Serializable, Parts {
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long identification;
     private String name;
     private String code;

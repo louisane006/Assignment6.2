@@ -1,14 +1,11 @@
 package com.example.malumukendi.assignment6services.Domain;
 
-import android.content.Intent;
-import android.os.IBinder;
-
 import java.io.Serializable;
 
 /**
  * Created by louisane Malu on 3/29/2016.
  */
-public abstract class Brochure implements Serializable, Task{
+public class Brochure implements Serializable, Task{
     private Designer designer;
     private String desc;
     private Customer customer;
@@ -26,7 +23,6 @@ public abstract class Brochure implements Serializable, Task{
     public Brochure() {
     }
 
-    public abstract IBinder onBind(Intent intent);
 
     public static class Builder{
         private Designer designer;
@@ -66,12 +62,7 @@ public abstract class Brochure implements Serializable, Task{
             return this;
         }
         public Brochure build(){
-            return new Brochure(this) {
-                @Override
-                public IBinder onBind(Intent intent) {
-                    return null;
-                }
-            };
+            return new Brochure(this);
         }
 
     }

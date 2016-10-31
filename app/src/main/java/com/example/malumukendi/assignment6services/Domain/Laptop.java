@@ -8,14 +8,13 @@ import java.io.Serializable;
 //@Entity
 public class Laptop implements Serializable, Parts {
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long identification;
     private String name;
     private String code;
     private double price;
 
-    private Laptop(Builder b) {
+    public Laptop(Builder b) {
         this.identification = b.identification;
         this.code = b.code;
         this.name = b.name;

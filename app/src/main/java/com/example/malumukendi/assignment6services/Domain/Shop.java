@@ -15,7 +15,7 @@ public class Shop implements Serializable, Parts{
     private String address;
     List<Parts> part;
 
-    private Shop(Builder b){
+    public Shop(Builder b){
         size = b.size;
         address = b.address;
         part = b.part;

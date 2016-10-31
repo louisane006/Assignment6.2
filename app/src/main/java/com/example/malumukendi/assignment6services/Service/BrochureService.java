@@ -2,12 +2,9 @@ package com.example.malumukendi.assignment6services.Service;
 
 import com.example.malumukendi.assignment6services.Domain.Brochure;
 
-import java.util.List;
-
 /**
  * Created by Malu.Mukendi on 2016-05-07.
  */
-public interface HighestBrochurePriceService {
+public interface BrochureService extends Services<Brochure,Long>{
 
-    Brochure highestCost(List<Brochure> works);
 }

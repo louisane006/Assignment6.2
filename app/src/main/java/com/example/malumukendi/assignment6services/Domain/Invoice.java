@@ -93,10 +93,6 @@ public class Invoice implements Serializable, Payment {
         return invoiceNum;
     }
 
-    public void setInvoiceNum(int invoiceNum) {
-        this.invoiceNum = invoiceNum;
-    }
-
     public Cashier getCashier() {
         return cashier;
     }

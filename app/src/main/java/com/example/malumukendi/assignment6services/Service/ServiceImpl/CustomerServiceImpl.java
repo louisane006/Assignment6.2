@@ -1,36 +1,45 @@
 package com.example.malumukendi.assignment6services.Service.ServiceImpl;
 
-import android.content.Intent;
-import android.os.Binder;
-import android.os.IBinder;
-
 import com.example.malumukendi.assignment6services.Domain.Customer;
 import com.example.malumukendi.assignment6services.Repos.CustomerRepo;
 import com.example.malumukendi.assignment6services.Service.CustomerService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Malu.Mukendi on 2016-05-07.
  */
 public class CustomerServiceImpl extends Customer implements CustomerService {
 
-    private final IBinder localBinder = new ActivateServiceLocalBinder();
-    private CustomerRepo repo;
+    private CustomerRepo repository;
+    @Override
+    public Customer findById(Long id) {
+        return repository.findById(id);
+    }
 
+    @Override
+    public Customer save(Customer entity) {
+        return repository.save(entity);
+    }
 
-    public CustomerServiceImpl() {
+    @Override
+    public Customer update(Customer entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public void delete(Customer entity) {
+        repository.delete(entity);
+
     }
     @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        return localBinder;
-    }
-    public class ActivateServiceLocalBinder extends Binder {
-        public CustomerServiceImpl getService() {
-            return CustomerServiceImpl.this;
+    public List<Customer> findAll() {
+        List<Customer> allcust = new ArrayList<>();
+        Iterable<Customer> cust = repository.findAll();
+        for (Customer subject : cust) {
+            allcust.add(subject);
         }
-    }
-    @Override
-    public double getCust(Customer customer) {
-        return 0.0;
+        return allcust;
     }
 }

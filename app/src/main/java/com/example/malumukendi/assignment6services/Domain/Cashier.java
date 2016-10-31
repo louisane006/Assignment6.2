@@ -1,19 +1,13 @@
 package com.example.malumukendi.assignment6services.Domain;
 
-import android.content.Intent;
-import android.os.IBinder;
-
 import java.io.Serializable;
 
 /**
  * Created by louisane Malu on 3/29/2016.
  */
-//@Entity
-public abstract class Cashier implements Serializable{
+public class Cashier implements Serializable{
 
         private static final long serialVersionUID = 1L;
-        //@Id
-        //@GeneratedValue(strategy = GenerationType.AUTO)
         private Long identification;
         private String name;
         private String surname;
@@ -31,7 +25,6 @@ public abstract class Cashier implements Serializable{
     protected Cashier() {
     }
 
-    public abstract IBinder onBind(Intent intent);
 
     public static class Builder{
             private String name;
@@ -68,12 +61,7 @@ public abstract class Cashier implements Serializable{
                 return this;
             }
             public Cashier build(){
-                return new Cashier(this) {
-                    @Override
-                    public IBinder onBind(Intent intent) {
-                        return null;
-                    }
-                };
+                return new Cashier(this);
             }
 
             public Builder taskNum(String t) {
